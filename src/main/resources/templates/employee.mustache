@@ -1,0 +1,30 @@
+<html>
+<head>
+    <title>Add employee</title>
+</head>
+
+<body background="https://s1.1zoom.ru/big0/686/Closeup_Pocket_watch_Clock_face_Zenith_Pilot_Type_576637_1280x800.jpg"
+      style="color:#00FFFF">
+<h1>Add new employee of the company</h1>
+
+<form name="employee" action="addEmployee2" method="post">
+    Name: <input type="text" name="name"/><br/>
+    Sername: <input type="text" name="sername"/><br/>
+    Post:<select id="post" name="post">
+    <option value="worker">worker</option>
+    <option value="head">head</option>
+    <option value="accountant">accountant</option>
+    <option value="engineer">engineer</option>
+</select><br/>
+    Sex:<select id="sex" name="sex">
+    <option value="man">man</option>
+    <option value="woman">woman</option>
+</select><br/>
+    City of birthday: <input type="text" name="cityOfBirthday"/><br/>
+    Salary: <input type="text" name="salary"/><br/>
+
+    <input type="submit" value="Add new employee"/>
+</form>
+
+</body>
+</html>
