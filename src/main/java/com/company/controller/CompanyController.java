@@ -3,6 +3,7 @@ package com.company.controller;
 import com.company.persistence.model.Employee;
 import com.company.persistence.model.Employee2;
 import com.company.persistence.model.EmployeeInfo;
+import com.company.persistence.model.Id2;
 import com.company.service.EmployeeInfoService;
 import com.company.service.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Controller
@@ -57,7 +59,7 @@ public class CompanyController {
         employee1.setEmployeeInfo(employeeInfo);
 
         employeeService.addEmployee(employee1);
-        return "end";
+        return "home";
 
     }
 
@@ -65,33 +67,37 @@ public class CompanyController {
     public String showAllEmployees(Model model){
         List<Employee> employeeList = employeeService.showAll();
         List<EmployeeInfo> employeeInfoList = employeeInfoService.showAll();
-        model.addAttribute("employeeList", employeeList);
-        model.addAttribute("employeeInfoList", employeeInfoList);
+
+        List<Employee2> employee2List = new LinkedList<>();
+        for(int i =0;i<employeeList.size(); i++){
+            Employee employee1 = employeeList.get(i);
+            EmployeeInfo employeeInfo1 = employeeInfoList.get(i);
+            Employee2 employee2 = new Employee2();
+
+            employee2.setId(employee1.getId());
+            employee2.setName(employee1.getName());
+            employee2.setSername(employee1.getSername());
+            employee2.setPost(employee1.getPost());
+            employee2.setSex(employeeInfo1.getSex());
+            employee2.setCityOfBirthday(employeeInfo1.getCityOfBirthday());
+            employee2.setSalary(employeeInfo1.getSalary());
+            employee2List.add(employee2);
+
+        }
+        model.addAttribute("employee2List", employee2List);
         return "allEmployees";
 
     }
-/*
-    @GetMapping(value = "/addEmployeeInfo")
-    public ModelAndView newEmployeeInfo(){
-        return new ModelAndView("employeeInfo","employeeInfo", new EmployeeInfo());
+    @GetMapping(value = "/delete")
+    public ModelAndView deleteEmployeeById(){
+        return new ModelAndView("deleteById","delete", new Id2());
     }
 
-
-
-    @PostMapping(value = "/newEmployee")
-    public String addEmployee(@ModelAttribute("employee") Employee employee,
-                              @ModelAttribute("employeeInfo") EmployeeInfo employeeInfo){
-        
-        //employee.setEmployeeInfo(employeeInfo);
-        employeeInfo.setEmployee(employee);
-
-
-        employeeInfoService.addEmployeeInfo(employeeInfo);
-        return "end";
+    @PostMapping(value = "/deleteById")
+    public String deleteById(@ModelAttribute("delete") Id2 id2){
+        employeeService.deleteEmployee(id2.getID());
+        return "home";
     }
-
- */
-
 
 
 }

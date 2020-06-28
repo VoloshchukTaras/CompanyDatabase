@@ -28,4 +28,9 @@ public class EmployeeServiceImpl implements EmployeeService {
     public Optional<Employee> findById(Integer id) {
         return employeeRepository.findById(id);
     }
+
+    @Override
+    public void deleteEmployee(Integer id) {
+        employeeRepository.deleteById(id);
+    }
 }

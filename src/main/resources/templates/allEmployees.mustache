@@ -12,33 +12,26 @@
         <th>Name</th>
         <th>Sername</th>
         <th>Post</th>
+        <th>Sex</th>
+        <th>City of birthday</th>
+        <th>Salary</th>
+
     </tr>
-    {{#employeeList}}
+    {{#employee2List}}
         <tr>
             <td>{{id}}</td>
             <td>{{name}}</td>
             <td>{{sername}}</td>
             <td>{{post}}</td>
-        </tr>
-    {{/employeeList}}
-</table>
-<h1>Other info about employyes of the company</h1>
-<table border="1">
-    <tr>
-        <th>Id</th>
-        <th>Sex</th>
-        <th>City of birthday</th>
-        <th>Salary</th>
-    </tr>
-    {{#employeeInfoList}}
-        <tr>
-            <td>{{id}}</td>
             <td>{{sex}}</td>
             <td>{{cityOfBirthday}}</td>
             <td>{{salary}}</td>
+
         </tr>
-    {{/employeeInfoList}}
+    {{/employee2List}}
 </table>
+
+<h2 align="center"><a href="http://localhost:8080/company/"><font size="8" color="#FF8C00">Home page</font></a></h2>
 
 </body>
 </html>
